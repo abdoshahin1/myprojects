@@ -1,0 +1,5 @@
+﻿  calc.cpp
+E:\frist.cpp\calculator\calculator\calc.h(461,43): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\frist.cpp\calculator\calculator\calc.cpp(5,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  calc.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  calculator.vcxproj -> E:\frist.cpp\calculator\x64\Debug\calculator.exe

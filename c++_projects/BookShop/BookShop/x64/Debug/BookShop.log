@@ -1,0 +1,18 @@
+﻿  All_book.cpp
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(15,7): error C2365: 'All_book::total_money': redefinition; previous definition was 'data member'
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(8,6): message : see declaration of 'All_book::total_money'
+E:\projects\c++_projects\BookShop\BookShop\All_book.cpp(21,1): error C2063: 'All_book::total_money': not a function
+  BookShop.cpp
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(15,7): error C2365: 'All_book::total_money': redefinition; previous definition was 'data member'
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(8,6): message : see declaration of 'All_book::total_money'
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(5,1): error C2011: 'All_book': 'class' type redefinition
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(4,7): message : see declaration of 'All_book'
+E:\projects\c++_projects\BookShop\BookShop\history.h(3,1): error C2504: 'All_book': base class undefined
+E:\projects\c++_projects\BookShop\BookShop\BookShop.cpp(7,11): error C2079: 'shop' uses undefined class 'All_book'
+  history.cpp
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(15,7): error C2365: 'All_book::total_money': redefinition; previous definition was 'data member'
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(8,6): message : see declaration of 'All_book::total_money'
+E:\projects\c++_projects\BookShop\BookShop\history.cpp(6,10): error C2248: 'All_book::total_money': cannot access private member declared in class 'All_book'
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(8,6): message : see declaration of 'All_book::total_money'
+E:\projects\c++_projects\BookShop\BookShop\All_book.h(4,7): message : see declaration of 'All_book'
+  Generating Code...

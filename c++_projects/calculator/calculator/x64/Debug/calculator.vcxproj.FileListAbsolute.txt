@@ -1,0 +1,4 @@
+E:\frist.cpp\calculator\calculator\x64\Debug\calculator.vcxproj.AssemblyReference.cache
+E:\frist.cpp\calculator\calculator\x64\Debug\calculator.vcxproj.SuggestedBindingRedirects.cache
+E:\frist.cpp\calculator\calculator\x64\Debug\calculator.calc.resources
+E:\frist.cpp\calculator\calculator\x64\Debug\calculator.vcxproj.GenerateResource.cache

@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,100&display=swap');
+*{
+    font-family: 'Roboto Mono', 'monospace',sans-serif;
+    margin: 0px;
+    padding: 0px;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+.header{
+    background-color: black;
+    width: 100%;
+    height: 40px;
+    border-bottom: 5px #336edd solid;
+    position: fixed;
+    z-index: 999;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 6px 30px;
+}
+.name{
+    color:white;
+    text-transform:capitalize ;
+    font-size: 1.8em;
+}
+
+.fa-align-justify{
+    color: blue;
+}
+.fa-paper-plane {
+    color: blue;
+}
+.header i:hover{
+    color: white;
+}
+.navegation-par a,i{
+    font-size: 1.1em;
+    padding: 2px;
+}
+.a{
+    color: rgb(249, 249, 253);
+    text-decoration: none;
+    text-transform: capitalize;
+}
+.navegation-par a:hover{
+    color: blue;
+}
+section{
+    padding: 100px 100px;
+}
+.main{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(photo/preview1.png);
+    text-transform: capitalize;
+}
+.main h2{
+    font-size: 1.4em;
+    font-weight: 500;
+    color: aliceblue;
+}
+.main h2 span{
+    color: #1fe93a;
+    font-size: 3em;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 10px;
+}
+.btn{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: #336edd;
+    border: 3px #336edd solid;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 0.9375em 2.1875em;
+    transition: 0.7s ease;
+}
+.btn:hover{
+    color: rgb(0, 255, 64);
+    transform: scale(1.1);
+    background-color: blue;
+}
+.footer{
+    background-color: black;
+    position: absolute;
+    bottom:-200%;
+    height: 200px;
+    width: 100%;
+}
+.footer i:hover{
+    color: rgb(219, 223, 20);
+}
+.footer label:hover{
+    color: rgb(219, 223, 20);
+}
+.title{
+    color: white;
+    margin: 10px;
+    font-size: 1em;
+    text-transform: capitalize;
+}
+.fa-whatsapp{
+    color:chartreuse;
+    margin-right: 5px;
+}
+.fa-discord{
+    color: blueviolet;
+    margin-right: 5px;
+}
+.fa-google{
+    color:white;
+    margin-right: 5px;
+}
+.fa-linkedin-in{
+    color: #336edd;     
+    margin-right: 5px;
+}
+.discord,.phone,.gmail,.linkedin{
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    text-transform: capitalize;
+    width: 110px;
+}
+.phone{
+    margin-top: 25px ;
+}
+label{
+    color: aqua;
+}
