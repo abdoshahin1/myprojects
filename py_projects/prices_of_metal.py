@@ -30,5 +30,6 @@ with open(r"C:\Users\Public\Downloads\price_metal.txt", "w", encoding="utf-8") a
     for h in prices_list:
         f.write(h)
         f.write("\n\n")
+
 f.close()
 web.close()
