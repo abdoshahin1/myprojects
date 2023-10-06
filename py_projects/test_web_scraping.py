@@ -1,4 +1,3 @@
-import os
 from selenium import webdriver
 from selenium.webdriver import chrome
 from selenium.webdriver.chrome.service import Service
