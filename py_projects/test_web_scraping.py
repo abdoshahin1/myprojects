@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.webdriver import chrome
 from selenium.webdriver.chrome.service import Service
@@ -9,12 +10,17 @@ from selenium.webdriver.support import expected_conditions as EC
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
-user_input = input("enter your governorate: ")
+def path ():
+    file_path = input("enter the path: ").strip()
+    file_path = r"C:\Users\Public\Downloads\prayer_times.txt"
+    return file_path
+path_file = path()
+user_input = input("enter your governorate: ").strip().capitalize()
 prayer_times = []
 
 web = webdriver.Chrome(options=options,service=Service(ChromeDriverManager().install()))
 web.get("https://timesprayer.com/prayer-times-cities-egypt.html")
-css_selector = ["body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr.active", 
+css_selector = ["body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr:nth-child(1)", 
                 "body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr:nth-child(2)", 
                 "body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr:nth-child(3)", 
                 "body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr:nth-child(4)", 
@@ -29,7 +35,7 @@ web.find_element(By.CSS_SELECTOR, "body > div.container > div.containerBlock > d
 for i in range(len(css_selector)):
     prayer = web.find_element(By.CSS_SELECTOR, css_selector[i]).text
     prayer_times.append(prayer)
-with open(r"E:\my project\py_projects\prayer_times.txt", "w", encoding="utf-8") as f:
+with open(f"{path_file}", "w", encoding="utf-8") as f:
     for prayer_time in prayer_times:
         f.write(prayer_time)
         f.write("\n\n")
