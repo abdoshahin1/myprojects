@@ -9,10 +9,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
+user_input = input("enter your governorate: ")
+prayer_times = []
+
 web = webdriver.Chrome(options=options,service=Service(ChromeDriverManager().install()))
 web.get("https://timesprayer.com/prayer-times-cities-egypt.html")
-
-prayer_times = []
 css_selector = ["body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr.active", 
                 "body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr:nth-child(2)", 
                 "body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr:nth-child(3)", 
@@ -21,7 +22,7 @@ css_selector = ["body > div.container > div.containerBlock.prayerBlock > div > d
                 "body > div.container > div.containerBlock.prayerBlock > div > div.prayerDes > div > div:nth-child(1) > table > tbody > tr:nth-child(6)"]
 
 test = web.find_element(By.CSS_SELECTOR, "#q")
-test.send_keys("El Dabaa", Keys.ARROW_DOWN)
+test.send_keys(f"{user_input}", Keys.ARROW_DOWN)
 web.find_element(By.CLASS_NAME, "search").click()
 web.find_element(By.CSS_SELECTOR, "body > div.container > div.containerBlock > div.oneResult > a").click()
 
