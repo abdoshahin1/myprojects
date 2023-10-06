@@ -1,6 +1,6 @@
 from import_selenium import *
 
-# file_path = path()
+file_path = r"C:\Users\Public\Downloads\price_metal.txt"
 prices_list = []
 
 web.get("https://google.com/")
@@ -9,8 +9,11 @@ web.find_element(By.CSS_SELECTOR, "body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf >
 web.find_element(By.CSS_SELECTOR, "#rso > div.hlcw0c > div > div > div > div > div > div > div > div.yuRUbf > div > span > a > h3").click()
 web.find_element(By.CSS_SELECTOR, "body > div:nth-child(4) > header > div.large-9.columns > div.search_wrap > form > input[type=text]:nth-child(1)").send_keys("سعر الحديد اليوم", Keys.ARROW_DOWN)
 web.find_element(By.CSS_SELECTOR, "body > div:nth-child(4) > header > div.large-9.columns > div.search_wrap > form > input.search_icon").click()
-web.find_element(By.CSS_SELECTOR, "body > div:nth-child(15) > div.large-8.columns.advancedSearch > div:nth-child(4) > ul > li:nth-child(1)").click()
-# to get the title of metal article
+web.find_element(By.XPATH, "/html/body/div[8]/div[1]/div[3]/a").click()
+web.find_element(By.CSS_SELECTOR, "body > div:nth-child(13) > div.large-8.columns > div > div.town_wrap > div:nth-child(1) > a").click()
+time = web.find_element(By.CSS_SELECTOR, "body > div.row.main-article.section-3 > div.large-8.columns > div > h1").text
+prices_list.append(time)
+# to get the title of metal article 
 title = web.find_element(By.CSS_SELECTOR, "#NewsStory > h2:nth-child(13)").text
 prices_list.append(title)
 # to get the contact of metal article
@@ -26,10 +29,11 @@ for j in range(55, 104, 24):
         prices_list.append(web.find_element(By.CSS_SELECTOR, f"#NewsStory > p:nth-child({j})").text)
 
 # print the texts in file
-with open(r"C:\Users\Public\Downloads\price_metal.txt", "w", encoding="utf-8") as f:
+with open(file_path, "w", encoding="utf-8") as f:
     for h in prices_list:
         f.write(h)
         f.write("\n\n")
 
 f.close()
 web.close()
+print(f"to get the file goto this path => {file_path}.")
