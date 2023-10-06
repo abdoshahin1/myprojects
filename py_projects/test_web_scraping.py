@@ -1,17 +1,9 @@
 from import_selenium import *
 
-def path ():
-    file_path = input("enter the path: ").strip()
-    if file_path == "":
-        file_path = r"C:\Users\Public\Downloads\prayer_times.txt"
-    else:
-        file_path = file_path + r"\prayer_times.txt"
-    return file_path
 path_file = path()
 user_input = input("enter your governorate: ").strip().capitalize()
 prayer_times = []
 
-web = webdriver.Chrome(options=options,service=Service(ChromeDriverManager().install()))
 web.get("https://timesprayer.com/prayer-times-cities-egypt.html")
 test = web.find_element(By.CSS_SELECTOR, "#q")
 test.send_keys(f"{user_input}", Keys.ARROW_DOWN)
