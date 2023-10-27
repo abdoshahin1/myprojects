@@ -1,5 +1,5 @@
 import os
-import time
+from time import sleep
 import sqlite3
 
 # clear the screen on terminal
@@ -22,7 +22,7 @@ class Account:
     num_user = 1
     @classmethod
     def new_account(cls) -> None:
-        time.sleep(0.7)
+        sleep(0.7)
         clear()
         name = input("Enter your name: ").strip().capitalize()
         address = input("Enter your address: ").strip().capitalize()
@@ -48,14 +48,19 @@ class Account:
             cr.execute(f"update users set User_id = {Account.num_user} where Name = '{name}' ")
             print("Loading........")
             save_info()
-            time.sleep(1.5)
+            sleep(1.5)
             print("Account is created.")
+            sleep(0.7)
+            clear()
     @classmethod
     def logging(cls) -> None:
         cr.execute("select Email, Password from users")
         data = cr.fetchall()
-        for ts in data:
-            print(ts)
+        confirm_email = input("Enter the email: ").strip()
+        confirm_pass = input("Enter the password: ")
+        for ts in range(len(data) - 1):
+            while confirm_email != data[ts][0]:
+                pass
     @classmethod
     def start(cls):
         try:
@@ -66,15 +71,18 @@ class Account:
             else:
                 if option == 1:
                     Account.new_account()
-                    clear()
+                    print(welcome_message)
+                    Account.start()
                 elif option == 2:
                     Account.logging()
+                    print(welcome_message)
+                    Account.start()
                 elif option == 3:
                     pass
         except ValueError:
             clear()
             print("Only number allowed, Please enter option again.")
-            time.sleep(1)
+            sleep(1)
             Account.start()
 # start the program
 Account.start()
