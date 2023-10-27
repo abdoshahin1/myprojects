@@ -12,6 +12,12 @@ cr.execute("create table if not exists users (User_id integer, Name text, Addres
 def save_info() -> None:
     db.commit()
     db.close()
+
+welcome_message = """Hello my dear client this is a simple ATM application you can use is easily:
+    1- Create a new account.
+    2- Login into your account.
+    3- Exit."""
+print(welcome_message)
 class Account:
     num_user = 1
     @classmethod
@@ -38,21 +44,20 @@ class Account:
             cr.execute("select * from users")
             all_data = cr.fetchall()
             cr.execute("insert into users values(?,?,?,?,?,?)", details)
-            if len(all_data) != 0:
-                Account.num_user = all_data[-1][0] + 1
-                cr.execute(f"update users set User_id = {Account.num_user} where Name = '{name}' ")
-            save_info()
+            Account.num_user = all_data[-1][0] + 1
+            cr.execute(f"update users set User_id = {Account.num_user} where Name = '{name}' ")
             print("Loading........")
+            save_info()
             time.sleep(1.5)
             print("Account is created.")
+    @classmethod
     def logging(cls) -> None:
-        pass
-    def start():
-        welcome_message = """Hello my dear client this is a simple ATM application you can use is easily:
-        1- Create a new account.
-        2- Login into your account.
-        3- Exit."""
-        print(welcome_message)
+        cr.execute("select Email, Password from users")
+        data = cr.fetchall()
+        for ts in data:
+            print(ts)
+    @classmethod
+    def start(cls):
         try:
             option = int(input("Enter the option: ").strip())
             while option not in [1, 2, 3]:
@@ -61,8 +66,9 @@ class Account:
             else:
                 if option == 1:
                     Account.new_account()
+                    clear()
                 elif option == 2:
-                    pass
+                    Account.logging()
                 elif option == 3:
                     pass
         except ValueError:
