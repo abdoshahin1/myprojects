@@ -56,11 +56,33 @@ class Account:
     def logging(cls) -> None:
         cr.execute("select Email, Password from users")
         data = cr.fetchall()
-        confirm_email = input("Enter the email: ").strip()
-        confirm_pass = input("Enter the password: ")
-        for ts in range(len(data) - 1):
-            while confirm_email != data[ts][0]:
-                pass
+        clear()
+        confirm_email = input("Enter the email: ").strip().capitalize()
+        for ts in range(len(data)):
+            if confirm_email in data[ts]:
+                confirm_pass = input("Enter the password: ").strip()
+                break
+            else:
+                while True:
+                    if confirm_email in data[ts]:
+                        break
+                    print("The email is not exist,please make sure on your email.")
+                    confirm_email = input("Enter the email: ").strip().capitalize()
+                    ts += 1
+        for ts in range(len(data)):
+            if confirm_pass in data[ts]:
+                clear()
+                break
+            else:
+                while True:
+                    if confirm_pass in data[ts]:
+                            break
+                    print("The password is not correct, please make sure on your password.")
+                    confirm_pass = input("Enter your password: ").strip()
+                    ts += 1
+    @classmethod
+    def details(cls) -> None:
+        print("ok.".capitalize())
     @classmethod
     def start(cls):
         try:
@@ -75,8 +97,7 @@ class Account:
                     Account.start()
                 elif option == 2:
                     Account.logging()
-                    print(welcome_message)
-                    Account.start()
+                    Account.details()
                 elif option == 3:
                     pass
         except ValueError:
