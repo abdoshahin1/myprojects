@@ -57,29 +57,31 @@ class Account:
         cr.execute("select Email, Password from users")
         data = cr.fetchall()
         clear()
+        check = False
         confirm_email = input("Enter the email: ").strip().capitalize()
         for ts in range(len(data)):
             if confirm_email in data[ts]:
-                confirm_pass = input("Enter the password: ").strip()
+                check = True
                 break
             else:
-                while True:
-                    if confirm_email in data[ts]:
-                        break
-                    print("The email is not exist,please make sure on your email.")
-                    confirm_email = input("Enter the email: ").strip().capitalize()
-                    ts += 1
+                while check != True:
+                    print("The email is not correct, please make sure on your email.")
+                    confirm_email = input("Enter the email :").strip().capitalize()
+                    for ts in range(len(data)):
+                        if confirm_email in data[ts]:
+                            check = True
+        confirm_pass = input("Enter the password: ").strip()
         for ts in range(len(data)):
             if confirm_pass in data[ts]:
-                clear()
+                check = True
                 break
             else:
-                while True:
-                    if confirm_pass in data[ts]:
-                            break
+                while check != True:
                     print("The password is not correct, please make sure on your password.")
-                    confirm_pass = input("Enter your password: ").strip()
-                    ts += 1
+                    confirm_pass = input("Enter the password :").strip().capitalize()
+                    for ts in range(len(data)):
+                        if confirm_pass in data[ts]:
+                            check = True
     @classmethod
     def details(cls) -> None:
         print("ok.".capitalize())
