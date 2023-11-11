@@ -46,8 +46,8 @@ class Account:
             cr.execute("insert into users values(?,?,?,?,?,?)", details)
             Account.num_user = all_data[-1][0] + 1
             cr.execute(f"update users set User_id = {Account.num_user} where Name = '{name}' ")
-            print("Loading........")
             save_info()
+            print("Loading........")
             sleep(1.5)
             print("Account is created.")
             sleep(0.7)
@@ -66,7 +66,7 @@ class Account:
             else:
                 while check != True:
                     print("The email is not correct, please make sure on your email.")
-                    confirm_email = input("Enter the email :").strip().capitalize()
+                    confirm_email = input("Enter the email: ").strip().capitalize()
                     for ts in range(len(data)):
                         if confirm_email in data[ts]:
                             check = True
@@ -84,7 +84,18 @@ class Account:
                             check = True
     @classmethod
     def details(cls) -> None:
-        print("ok.".capitalize())
+        clear()
+        # save_info()
+        list_message = """ -------------------menu-------------------
+    1-menu
+    2-Edit your email
+    3-Edit your password
+    4-withdraw
+    5-deposit
+    6-money transfer
+    7-total money
+    8-exit"""
+        print(list_message.capitalize())
     @classmethod
     def start(cls):
         try:
@@ -95,8 +106,7 @@ class Account:
             else:
                 if option == 1:
                     Account.new_account()
-                    print(welcome_message)
-                    Account.start()
+                    Account.details()
                 elif option == 2:
                     Account.logging()
                     Account.details()
