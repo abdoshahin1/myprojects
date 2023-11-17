@@ -74,9 +74,11 @@ class Account:
             list_details.append(data[num][0])
             list_details.append(data[num][1])
         if confirm_email in list_details or list_details:
-            
-        exit()
-
+            print("loading..........")
+            sleep(1)
+        else:
+            print("You entered something wrong, please check the email or password then enter the correct details.")
+            Account.logging()
     @classmethod
     def details(cls) -> None:
         clear()
