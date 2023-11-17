@@ -84,15 +84,24 @@ class Account:
     def details(cls) -> None:
         clear()
         list_message = """ -------------------menu-------------------
-    1-menu
-    2-Edit your email
-    3-Edit your password
-    4-withdraw
-    5-deposit
-    6-money transfer
-    7-total money
-    8-exit"""
-        print(list_message.capitalize())
+            
+            1 => Menu
+            2 => Edit your email
+            3 => Edit your password
+            4 => Withdraw
+            5 => Deposit
+            6 => Money transfer
+            7 => Total money
+            8 => Exit
+
+Enter the option: """
+        try:
+            option = int(input(list_message).strip())
+        except ValueError:
+            clear()
+            print('enter the number only'.capitalize())
+            sleep(1)
+            Account.details()
     @classmethod
     def start(cls):
         try:
