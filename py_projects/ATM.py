@@ -1,4 +1,5 @@
 import os
+import sys
 from time import sleep
 import sqlite3
 
@@ -43,49 +44,42 @@ class Account:
             details = (Account.num_user, name, address, age, email, password)
             cr.execute("select * from users")
             all_data = cr.fetchall()
-            cr.execute("insert into users values(?,?,?,?,?,?)", details)
-            Account.num_user = all_data[-1][0] + 1
-            cr.execute(f"update users set User_id = {Account.num_user} where Name = '{name}' ")
-            save_info()
-            print("Loading........")
-            sleep(1.5)
-            print("Account is created.")
-            sleep(0.7)
-            clear()
+            if all_data != []:
+                cr.execute("insert into users values(?,?,?,?,?,?)", details)
+                Account.num_user = all_data[-1][0] + 1
+                cr.execute(f"update users set User_id = {Account.num_user} where Name = '{name}' ")
+                save_info()
+                print("Loading........")
+                sleep(1.5)
+                print("Account is created.")
+                sleep(0.7)
+                clear()
+            else:
+                cr.execute("insert into users values(?,?,?,?,?,?)", details)
+                save_info()
+                print("Loading........")
+                sleep(1.5)
+                print("Account is created.")
+                sleep(0.7)
+                clear()
     @classmethod
     def logging(cls) -> None:
         cr.execute("select Email, Password from users")
         data = cr.fetchall()
         clear()
-        check = False
+        list_details = []
         confirm_email = input("Enter the email: ").strip().capitalize()
-        for ts in range(len(data)):
-            if confirm_email in data[ts]:
-                check = True
-                break
-            else:
-                while check != True:
-                    print("The email is not correct, please make sure on your email.")
-                    confirm_email = input("Enter the email: ").strip().capitalize()
-                    for ts in range(len(data)):
-                        if confirm_email in data[ts]:
-                            check = True
-        confirm_pass = input("Enter the password: ").strip()
-        for ts in range(len(data)):
-            if confirm_pass in data[ts]:
-                check = True
-                break
-            else:
-                while check != True:
-                    print("The password is not correct, please make sure on your password.")
-                    confirm_pass = input("Enter the password :").strip().capitalize()
-                    for ts in range(len(data)):
-                        if confirm_pass in data[ts]:
-                            check = True
+        confirm_password = input("Enter th password: ").strip()
+        for num in range(len(data)):
+            list_details.append(data[num][0])
+            list_details.append(data[num][1])
+        if confirm_email in list_details or list_details:
+            
+        exit()
+
     @classmethod
     def details(cls) -> None:
         clear()
-        # save_info()
         list_message = """ -------------------menu-------------------
     1-menu
     2-Edit your email
