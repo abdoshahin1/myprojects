@@ -73,11 +73,12 @@ class Account:
         for num in range(len(data)):
             list_details.append(data[num][0])
             list_details.append(data[num][1])
-        if confirm_email in list_details or list_details:
+        if confirm_email in list_details and confirm_password in list_details:
             print("loading..........")
             sleep(1)
         else:
             print("You entered something wrong, please check the email or password then enter the correct details.")
+            sleep(0.7)
             Account.logging()
     @classmethod
     def details(cls) -> None:
