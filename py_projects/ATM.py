@@ -10,20 +10,16 @@ def clear() -> None:
 db = sqlite3.connect("ATM.db")
 cr = db.cursor()
 cr.execute("create table if not exists users (User_id integer, Name text, Address text, Age integer, Email text, Password text)")
-def save_info() -> None:
-    db.commit()
-    db.close()
 
 welcome_message = """Hello my dear client this is a simple ATM application you can use is easily:
     1- Create a new account.
     2- Login into your account.
     3- Exit."""
-print(welcome_message)
 class Account:
     num_user = 1
     @classmethod
     def new_account(cls) -> None:
-        sleep(0.7)
+        sleep(1)
         clear()
         name = input("Enter your name: ").strip().capitalize()
         address = input("Enter your address: ").strip().capitalize()
@@ -48,19 +44,19 @@ class Account:
                 cr.execute("insert into users values(?,?,?,?,?,?)", details)
                 Account.num_user = all_data[-1][0] + 1
                 cr.execute(f"update users set User_id = {Account.num_user} where Name = '{name}' ")
-                save_info()
+                db.commit()
                 print("Loading........")
                 sleep(1.5)
                 print("Account is created.")
-                sleep(0.7)
+                sleep(1)
                 clear()
             else:
                 cr.execute("insert into users values(?,?,?,?,?,?)", details)
-                save_info()
+                db.commit()
                 print("Loading........")
-                sleep(1.5)
+                sleep(2)
                 print("Account is created.")
-                sleep(0.7)
+                sleep(1)
                 clear()
     @classmethod
     def logging(cls) -> None:
@@ -78,32 +74,50 @@ class Account:
             sleep(1)
         else:
             print("You entered something wrong, please check the email or password then enter the correct details.")
-            sleep(0.7)
+            sleep(2)
             Account.logging()
     @classmethod
     def details(cls) -> None:
         clear()
+        money = 0
         list_message = """ -------------------menu-------------------
-            
             1 => Menu
-            2 => Edit your email
-            3 => Edit your password
-            4 => Withdraw
-            5 => Deposit
-            6 => Money transfer
-            7 => Total money
-            8 => Exit
-
-Enter the option: """
+            2 => Edit your info
+            3 => Withdraw
+            4 => Deposit
+            5 => Money transfer
+            6 => Total money
+            7 => Exit
+    Enter the option: """
         try:
             option = int(input(list_message).strip())
         except ValueError:
             clear()
             print('enter the number only'.capitalize())
-            sleep(1)
+            sleep(2)
+            Account.details()
+        if option == 1:
+            Account.details()
+        elif option == 2:
+            cr.execute("update")
+        elif option == 3:
+            pass
+        elif option == 4:
+            pass
+        elif option == 5:
+            pass
+        elif option == 6:
+            pass
+        elif option == 7:
+            Account.start()
+        else:
+            print("please enter the correct option.")
+            sleep(2)
             Account.details()
     @classmethod
     def start(cls):
+        clear()
+        print(welcome_message)
         try:
             option = int(input("Enter the option: ").strip())
             while option not in [1, 2, 3]:
@@ -117,7 +131,7 @@ Enter the option: """
                     Account.logging()
                     Account.details()
                 elif option == 3:
-                    pass
+                    exit()
         except ValueError:
             clear()
             print("Only number allowed, Please enter option again.")
@@ -125,3 +139,4 @@ Enter the option: """
             Account.start()
 # start the program
 Account.start()
+db.close()
