@@ -88,7 +88,7 @@ class Account:
             5 => Money transfer
             6 => Total money
             7 => Exit
-    Enter the option: """
+Enter the option: """
         try:
             option = int(input(list_message).strip())
         except ValueError:
@@ -107,7 +107,7 @@ class Account:
         elif option == 5:
             pass
         elif option == 6:
-            pass
+            print(f"your money is {money}$.")
         elif option == 7:
             Account.start()
         else:
