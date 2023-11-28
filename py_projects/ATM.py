@@ -99,7 +99,7 @@ Enter the option: """
         if option == 1:
             Account.details()
         elif option == 2:
-            cr.execute("update")
+            pass
         elif option == 3:
             pass
         elif option == 4:
