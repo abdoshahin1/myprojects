@@ -109,36 +109,12 @@ Enter the option: """
         elif option == 6:
             print(f"your money is {money}$.")
         elif option == 7:
-            Account.start()
+            start()
         else:
             print("please enter the correct option.")
             sleep(2)
             Account.details()
-    # @classmethod
-    # def start(cls):
-    #     clear()
-    #     print(welcome_message)
-    #     try:
-    #         option = int(input("Enter the option: ").strip())
-    #         while option not in [1, 2, 3]:
-    #             print("Please Enter the right option.")
-    #             option = int(input("Enter the option: ").strip())
-    #         else:
-    #             if option == 1:
-    #                 Account.new_account()
-    #                 Account.details()
-    #             elif option == 2:
-    #                 Account.logging()
-    #                 Account.details()
-    #             elif option == 3:
-    #                 exit()
-    #     except ValueError:
-    #         clear()
-    #         print("Only number allowed, Please enter option again.")
-    #         sleep(1)
-    #         Account.start()
 # start the program
-# Account.start()
 def start():
         clear()
         print(welcome_message)
