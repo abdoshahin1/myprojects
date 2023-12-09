@@ -11,7 +11,7 @@ db = sqlite3.connect("ATM.db")
 cr = db.cursor()
 cr.execute("create table if not exists users (User_id integer, Name text, Address text, Age integer, Email text, Password text)")
 
-welcome_message = """Hello my dear client this is a simple ATM application you can use is easily:
+welcome_message = """Hello my dear client this is a simple ATM application you can use:
     1- Create a new account.
     2- Login into your account.
     3- Exit."""
@@ -114,8 +114,32 @@ Enter the option: """
             print("please enter the correct option.")
             sleep(2)
             Account.details()
-    @classmethod
-    def start(cls):
+    # @classmethod
+    # def start(cls):
+    #     clear()
+    #     print(welcome_message)
+    #     try:
+    #         option = int(input("Enter the option: ").strip())
+    #         while option not in [1, 2, 3]:
+    #             print("Please Enter the right option.")
+    #             option = int(input("Enter the option: ").strip())
+    #         else:
+    #             if option == 1:
+    #                 Account.new_account()
+    #                 Account.details()
+    #             elif option == 2:
+    #                 Account.logging()
+    #                 Account.details()
+    #             elif option == 3:
+    #                 exit()
+    #     except ValueError:
+    #         clear()
+    #         print("Only number allowed, Please enter option again.")
+    #         sleep(1)
+    #         Account.start()
+# start the program
+# Account.start()
+def start():
         clear()
         print(welcome_message)
         try:
@@ -136,7 +160,6 @@ Enter the option: """
             clear()
             print("Only number allowed, Please enter option again.")
             sleep(1)
-            Account.start()
-# start the program
-Account.start()
+            start()
+start()
 db.close()
