@@ -47,7 +47,7 @@ for files_name in os.listdir(current_folder):
     else:
         print("There are not excels in this file")
     #organize Power point
-    if files_name.endswith("pptx"):
+    if files_name.endswith(("pptx", "ppt")):
         if not os.path.exists("Power points"):
             os.mkdir("Power points")
         shutil.move(files_name, "Power points")
