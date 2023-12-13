@@ -68,4 +68,4 @@ for files_name in os.listdir(current_folder):
         print("Movies is done")
     else:
         print("There are not files to organize them.")
-print("All file in this directories is organized.")
+print("All file in this directory is organized.")
