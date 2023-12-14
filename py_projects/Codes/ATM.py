@@ -1,6 +1,6 @@
+from time import sleep
 import os
 import sys
-from time import sleep
 import sqlite3
 
 # clear the screen on terminal
