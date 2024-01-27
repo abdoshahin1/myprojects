@@ -17,6 +17,7 @@ welcome_message = """Hello my dear client this is a simple ATM application you c
     3- Exit."""
 class Account:
     num_user = 1
+    money = 0
     @classmethod
     def new_account(cls) -> None:
         sleep(1)
@@ -65,13 +66,13 @@ class Account:
         clear()
         list_details = []
         confirm_email = input("Enter the email: ").strip().capitalize()
-        confirm_password = input("Enter th password: ").strip()
+        confirm_password = input("Enter the password: ").strip()
         for num in range(len(data)):
             list_details.append(data[num][0])
             list_details.append(data[num][1])
         if confirm_email in list_details and confirm_password in list_details:
             print("loading..........")
-            sleep(1)
+            sleep(0.6)
         else:
             print("You entered something wrong, please check the email or password then enter the correct details.")
             sleep(2)
@@ -79,14 +80,13 @@ class Account:
     @classmethod
     def details(cls) -> None:
         clear()
-        money = 0
         cr.execute("select User_id, Password from users")
         details = cr.fetchall()
         list_message = """ -------------------menu-------------------
             1 => Menu
             2 => Change password
-            3 => Withdraw
-            4 => Deposit
+            3 => Deposit
+            4 => Withdraw 
             5 => Money transfer
             6 => Total money
             7 => Exit
@@ -118,13 +118,34 @@ Enter the option: """
             print("Your password is updated.")
             Account.details()
         elif option == 3:
-            pass
+            input_money = int(input("Enter your money: ").strip())
+            Account.money = Account.money + input_money
+            print("money is deposited")
+            sleep(0.9)
+            Account.details()
         elif option == 4:
-            pass
+            try:
+                input_money = int(input("Enter your money: ").strip())
+                if input_money < Account.money:
+                    Account.money = Account.money - input_money
+                    print("money is withdraw")
+                    sleep(0.9)
+                    Account.details()
+            except:
+                print("""You have money less than that you entered.
+                        please, enter money again.""")
+                input_money = int(input("Enter your money: ").strip())
+                if input_money < Account.money:
+                    Account.money = Account.money - input_money
+                    print("money is withdraw")
+                    sleep(0.9)
+                    Account.details()
         elif option == 5:
             pass
         elif option == 6:
-            print(f"your money is {money}$.")
+            print(f"your money is {Account.money} $.")
+            sleep(3)
+            Account.details()
         elif option == 7:
             start()
         else:
