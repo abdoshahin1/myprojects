@@ -80,6 +80,8 @@ class Account:
     def details(cls) -> None:
         clear()
         money = 0
+        cr.execute("select User_id, Password from users")
+        details = cr.fetchall()
         list_message = """ -------------------menu-------------------
             1 => Menu
             2 => Change password
@@ -89,8 +91,6 @@ class Account:
             6 => Total money
             7 => Exit
 Enter the option: """
-        cr.execute("select Password from users")
-        password = cr.fetchall()
         try:
             option = int(input(list_message).strip())
         except ValueError:
@@ -101,20 +101,22 @@ Enter the option: """
         if option == 1:
             Account.details()
         elif option == 2:
+            clear()
             pass_change = input("Enter old password:").strip()
-            for i in range(len(password)):
-                if pass_change in password[i] : 
+            for i in range(len(details)):
+                if pass_change in details[i] : 
                     pass_change = input("Enter new password: ").strip()
                     confirm_pass_change = input("Confirm password: ").strip()
                     if confirm_pass_change == pass_change:
-                        pass
-                        #cr.execute(f"update users set Password = '{pass_change}' where Email = '{}'")
+                        cr.execute(f"update users set Password = '{pass_change}' where User_id = {details[i][0]}")
                     else:
-                        print("check your password.")
-                        Account.details()
-                else:
-                    print("please check your password.")
-                    Account.details()
+                        print("please, enter the same password.")
+                        confirm_pass_change = input("Confirm password: ").strip()
+                        if confirm_pass_change == pass_change:
+                            cr.execute(f"update users set Password = '{pass_change}' where User_id = {details[i][0]}")
+            db.commit()
+            print("Your password is updated.")
+            Account.details()
         elif option == 3:
             pass
         elif option == 4:
