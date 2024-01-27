@@ -82,13 +82,15 @@ class Account:
         money = 0
         list_message = """ -------------------menu-------------------
             1 => Menu
-            2 => Edit your info
+            2 => Change password
             3 => Withdraw
             4 => Deposit
             5 => Money transfer
             6 => Total money
             7 => Exit
 Enter the option: """
+        cr.execute("select Password from users")
+        password = cr.fetchall()
         try:
             option = int(input(list_message).strip())
         except ValueError:
@@ -99,7 +101,20 @@ Enter the option: """
         if option == 1:
             Account.details()
         elif option == 2:
-            pass
+            pass_change = input("Enter old password:").strip()
+            for i in range(len(password)):
+                if pass_change in password[i] : 
+                    pass_change = input("Enter new password: ").strip()
+                    confirm_pass_change = input("Confirm password: ").strip()
+                    if confirm_pass_change == pass_change:
+                        pass
+                        #cr.execute(f"update users set Password = '{pass_change}' where Email = '{}'")
+                    else:
+                        print("check your password.")
+                        Account.details()
+                else:
+                    print("please check your password.")
+                    Account.details()
         elif option == 3:
             pass
         elif option == 4:
