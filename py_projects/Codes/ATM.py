@@ -42,11 +42,13 @@ class Account:
                 confirm_pass = input("Confirm the pass: ").strip()
             try:
                 money = int(input("Enter Money: ").strip())
-                print("done added money.")
             except ValueError:
                 print("please, enter number only.")
                 money = int(input("Enter Money: ").strip())
-                print("done added money.")
+            while money < 1000:
+                print("please, deposit money greater than 1000 EGP.")
+                sleep(0.5)
+                money = int(input("Enter Money: ").strip())
             details = (Account.num_user, name, address, age, email, password, money)
             cr.execute("select * from users")
             all_data = cr.fetchall()
@@ -90,12 +92,14 @@ class Account:
             Account.logging()
     @classmethod
     def details(cls) -> None:
+        list_account = []
         cr.execute("select * from users")
         details = cr.fetchall()
         for M in range(len(details)):
             if Account.user_pass in details[M]:
                 all_info = details[M]
                 new_money = details[M][-1]
+            list_account.append(details[M][-3])
         list_message = """ -----------------Menu-----------------
             1 => Menu
             2 => Display info
@@ -170,9 +174,20 @@ Enter the option: """
                     sleep(0.9)
                     Account.details()
         elif option == 6:
-            pass
+            other_term = input("Enter the email that you want to transfer money to him: ").strip().capitalize()
+            transfer_money = int(input("Enter the money :").strip())
+            cr.execute(f"update users set Money = {new_money - transfer_money} where Password = '{Account.user_pass}'")
+            while other_term not in list_account:
+                    print("Please, enter the correct email.")
+                    sleep(1)
+                    other_term = input("Enter the email that you want to transfer money to him: ").strip().capitalize()
+            cr.execute(f"update users set Money = {new_money + transfer_money} where Email = '{other_term}'")
+            db.commit()
+            print("Money is transferred.")
+            Account.details()
         elif option == 7:
-            print(f"your money is {new_money}$.")
+            print(new_money)
+            print(f"Your money is {new_money} EGP.")
             sleep(1)
             Account.details()
         elif option == 8:
