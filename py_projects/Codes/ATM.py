@@ -1,7 +1,8 @@
-from time import sleep
 import os
+import re
 import sys
 import sqlite3
+from time import sleep
 
 # clear the screen on terminal
 def clear() -> None:
@@ -28,8 +29,14 @@ class Account:
             print("You are underage, you do not pass the allowed limit for age.")
         else:
             email = input("Enter your email: ").strip().capitalize()
-            password = input("Enter the password: ").strip()
-            confirm_pass = input("Confirm the pass: ").strip()
+            vialed_email = re.findall(r"[A-z0-9\_?]+@\w{5}\.com", email)
+            while vialed_email == []: 
+                print("please, enter your gmail correctly.")
+                email = input("Enter your email: ").strip().capitalize()
+                vialed_email = re.findall(r"[A-z0-9\_?]+@\w{5}\.com", email)
+            else:
+                password = input("Enter the password: ").strip()
+                confirm_pass = input("Confirm the pass: ").strip()
             while confirm_pass != password:
                 print("Please enter same password.")
                 confirm_pass = input("Confirm the pass: ").strip()
@@ -76,6 +83,7 @@ class Account:
             Account.user_pass = confirm_password 
             print("loading..........")
             sleep(0.6)
+            clear()
         else:
             print("You entered something wrong, please check the email or password then enter the correct details.")
             sleep(2)
@@ -97,7 +105,7 @@ class Account:
             6 => Money transfer
             7 => Total money
             8 => Exit
-    Enter the option: """
+Enter the option: """ 
         try:
             option = int(input(list_message).strip())
         except ValueError:
@@ -109,6 +117,7 @@ class Account:
             Account.details()
         elif option == 2:
             for info in range(len(all_info)):
+                clear()
                 print(f"""-----------------My Information-----------------
                     Name => {all_info[1]}
                     Address => {all_info[2]}
