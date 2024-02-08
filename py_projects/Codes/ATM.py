@@ -193,15 +193,14 @@ def start():
             while option not in [1, 2, 3]:
                 print("Please Enter the right option.")
                 option = int(input("Enter the option: ").strip())
+            if option == 1:
+                Account.new_account()
+                Account.details()
+            elif option == 2:
+                Account.logging()
+                Account.details()
             else:
-                if option == 1:
-                    Account.new_account()
-                    Account.details()
-                elif option == 2:
-                    Account.logging()
-                    Account.details()
-                else:
-                    exit()
+                exit()
         except ValueError:
             clear()
             print("Only number allowed, Please enter option again.")
