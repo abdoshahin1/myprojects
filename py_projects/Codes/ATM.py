@@ -96,7 +96,7 @@ class Account:
             if Account.user_pass in details[M]:
                 all_info = details[M]
                 new_money = details[M][-1]
-        list_message = """ -------------------menu-------------------
+        list_message = """ -----------------Menu-----------------
             1 => Menu
             2 => Display info
             3 => Change password
@@ -156,6 +156,7 @@ Enter the option: """
                 if input_money < new_money:
                     cr.execute(f"update users set Money = {new_money - input_money} where Password = '{Account.user_pass}'")
                     print("money is withdraw")
+                    db.commit()
                     sleep(0.9)
                     Account.details()
             except:
@@ -172,7 +173,7 @@ Enter the option: """
             pass
         elif option == 7:
             print(f"your money is {new_money}$.")
-            sleep(3)
+            sleep(1)
             Account.details()
         elif option == 8:
             start()
@@ -199,7 +200,7 @@ def start():
                 elif option == 2:
                     Account.logging()
                     Account.details()
-                elif option == 3:
+                else:
                     exit()
         except ValueError:
             clear()
